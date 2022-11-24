@@ -7,7 +7,7 @@ jobs:
   Build-Pack-Publish:
     #We should not run these steps on the forks by default.
     if: github.repository_owner == 'OpenSilver'
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
       - uses: microsoft/setup-msbuild@v1.0.3
       - name: Inject slug/short variables
@@ -21,7 +21,7 @@ jobs:
           ref: ${{ github.ref }}
       - name: Restore Packages
         run: |
-          nuget restore src/Silverlight.Controls.ToolTips.OpenSilver.sln -v quiet
+          nuget restore src/Silverlight.Controls.ToolTips.OpenSilver.sln -ConfigFile src/NuGet.Config -v quiet
       - name: Build Silverlight.Controls.ToolTips.OpenSilver
         working-directory: build
         run: msbuild slnf/Silverlight.Controls.ToolTips.OpenSilver.slnf -p:Configuration=Release -clp:ErrorsOnly -restore
