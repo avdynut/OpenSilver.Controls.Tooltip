@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <EnableDefaultItems>false</EnableDefaultItems>
-	<DefineSilverlight>true</DefineSilverlight>
-	<AssemblyName>Silverlight.Controls.ToolTips</AssemblyName>
-	<RootNamespace>Silverlight.Controls.ToolTips</RootNamespace>
+    <DefineSilverlight>true</DefineSilverlight>
+    <AssemblyName>Silverlight.Controls.ToolTips</AssemblyName>
+    <RootNamespace>Silverlight.Controls.ToolTips</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenSilver" Version="1.0.0-private-2022-03-04-161437-15eec675" />
+    <PackageReference Include="OpenSilver" Version="1.2.0-preview-2022-11-24-100231-dd771509" />
   </ItemGroup>
-  
+
 </Project>
