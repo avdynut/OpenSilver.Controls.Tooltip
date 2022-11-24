@@ -628,20 +628,20 @@ namespace Silverlight.Controls.ToolTips
 
         private static void PerformClipping(Size size)
         {
-            var child = VisualTreeHelper.GetChild(CurrentToolTip, 0) as Border;
-            if (child == null)
-            {
-                return;
-            }
+            //var child = VisualTreeHelper.GetChild(CurrentToolTip, 0) as Border;
+            //if (child == null)
+            //{
+            //    return;
+            //}
 
-            if (size.Width < child.ActualWidth)
-            {
-                child.Width = size.Width;
-            }
-            if (size.Height < child.ActualHeight)
-            {
-                child.Height = size.Height;
-            }
+            //if (size.Width < child.ActualWidth)
+            //{
+            //    child.Width = size.Width;
+            //}
+            //if (size.Height < child.ActualHeight)
+            //{
+            //    child.Height = size.Height;
+            //}
         }
 
         private static void UnregisterToolTip(UIElement owner)
