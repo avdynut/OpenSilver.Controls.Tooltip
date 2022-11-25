@@ -356,6 +356,9 @@ namespace Silverlight.Controls.ToolTips
             switch (placementMode)
             {
                 case PlacementMode.Mouse:
+                    // current ToolTip is placed in a correct position by System.Windows.Controls.ToolTip class,
+                    // but then this code causes popup jumping to another position, so skip it
+                    return;
                     double offsetX = MousePosition.X + horizontalOffset;
                     double offsetY = MousePosition.Y + new TextBlock().FontSize + verticalOffset;
 
