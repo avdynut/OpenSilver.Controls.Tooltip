@@ -647,18 +647,16 @@ namespace Silverlight.Controls.ToolTips
             //}
         }
 
-        private static void UnregisterToolTip(UIElement owner)
+        private static void UnregisterToolTip(FrameworkElement owner)
         {
-
             if (owner.GetValue(ToolTipObjectProperty) == null)
             {
                 return;
             }
 
-            if (owner is FrameworkElement)
-            {
-                ((FrameworkElement)owner).Unloaded -= FrameworkElementUnloaded;
-            }
+            // register the ToolTip when the owner is loaded again
+            owner.Loaded += FrameworkElementLoaded;
+            owner.Unloaded -= FrameworkElementUnloaded;
             owner.MouseEnter -= OnElementMouseEnter;
             owner.MouseLeave -= OnElementMouseLeave;
 
@@ -690,6 +688,7 @@ namespace Silverlight.Controls.ToolTips
             // Avoid a memory leak by removing the element from the dictionary
             // when the owner is unloaded.
             owner.Unloaded += FrameworkElementUnloaded;
+            owner.Loaded -= FrameworkElementLoaded;
             owner.MouseEnter += OnElementMouseEnter;
             owner.MouseLeave += OnElementMouseLeave;
 
@@ -704,6 +703,12 @@ namespace Silverlight.Controls.ToolTips
             owner.SetValue(ToolTipObjectProperty, toolTip);
             toolTip.SetOwner(owner);
             SetToolTipInternal(owner, toolTip);
+        }
+
+        private static void FrameworkElementLoaded(object sender, RoutedEventArgs e)
+        {
+            var owner = sender as FrameworkElement;
+            RegisterToolTip(owner, owner.GetValue(ToolTipProperty));
         }
 
         private static void FrameworkElementUnloaded(object sender, RoutedEventArgs e)
